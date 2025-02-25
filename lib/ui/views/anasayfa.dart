@@ -28,29 +28,29 @@ class _AnasayfaState extends State<Anasayfa> {
       appBar: AppBar(
         title: aramaYapiliyorMu
             ? TextField(
-                decoration: InputDecoration(hintText: "Ara"),
-                onChanged: (aramaSonucu) {
-                  context.read<AnasayfaCubit>().ara(aramaSonucu);
-                },
-              )
+          decoration: InputDecoration(hintText: "Ara"),
+          onChanged: (aramaSonucu) {
+            context.read<AnasayfaCubit>().ara(aramaSonucu);
+          },
+        )
             : const Text("Kişiler"),
         actions: [
           aramaYapiliyorMu
               ? IconButton(
-                  onPressed: () {
-                    setState(() {
-                      aramaYapiliyorMu = false;
-                      context.read<AnasayfaCubit>().kisileriYukle();
-                    });
-                  },
-                  icon: Icon(Icons.clear))
+              onPressed: () {
+                setState(() {
+                  aramaYapiliyorMu = false;
+                  context.read<AnasayfaCubit>().kisileriYukle();
+                });
+              },
+              icon: Icon(Icons.clear))
               : IconButton(
-                  onPressed: () {
-                    setState(() {
-                      aramaYapiliyorMu = true;
-                    });
-                  },
-                  icon: Icon(Icons.search)),
+              onPressed: () {
+                setState(() {
+                  aramaYapiliyorMu = true;
+                });
+              },
+              icon: Icon(Icons.search)),
         ],
       ),
       body: BlocBuilder<AnasayfaCubit, List<Kisiler>>(
@@ -64,9 +64,9 @@ class _AnasayfaState extends State<Anasayfa> {
                   onTap: () {
                     print("${kisi.kisi_ad} seçildi");
                     Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => DetaySayfa(kisi: kisi)))
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => DetaySayfa(kisi: kisi)))
                         .then((value) {
                       context.read<AnasayfaCubit>().kisileriYukle();
                     });
@@ -96,11 +96,11 @@ class _AnasayfaState extends State<Anasayfa> {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content:
-                                      Text("${kisi.kisi_ad} silinsin mi ?"),
+                                  Text("${kisi.kisi_ad} silinsin mi ?"),
                                   action: SnackBarAction(
                                     label: "Evet",
                                     onPressed: () {
-                                      context.read<AnasayfaCubit>().sil(kisi.kisi_id);
+                                      context.read<AnasayfaCubit>().sil(int.parse(kisi.kisi_id));
                                     },
                                   ),
                                 ),
@@ -126,7 +126,7 @@ class _AnasayfaState extends State<Anasayfa> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const KayitSayfa()))
+              MaterialPageRoute(builder: (context) => const KayitSayfa()))
               .then((value) {
             context.read<AnasayfaCubit>().kisileriYukle();
           });

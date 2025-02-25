@@ -49,7 +49,7 @@ class _DetaySayfaState extends State<DetaySayfa> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  context.read<DetaySayfaCubit>().guncelle(widget.kisi.kisi_id, tfKisiAdi.text, tfKisiTel.text);
+                  context.read<DetaySayfaCubit>().guncelle(int.parse(widget.kisi.kisi_id), tfKisiAdi.text, tfKisiTel.text);
                 },
                 child: const Text("GÜNCELLE"),
               )
